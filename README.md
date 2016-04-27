@@ -2,7 +2,7 @@ URL Shortner Example
 
 URLShortnerAPI.java - has all the api methods
 
-www.sbx.bly.com is used a short url domain, all the short url's generated have this as a domain
+sbx.bly.com is used a short url domain, all the short url's generated have this as a domain
 
 https://v1-dot-sampleendpoint-1280.appspot.com/_ah/api/explorer
 
