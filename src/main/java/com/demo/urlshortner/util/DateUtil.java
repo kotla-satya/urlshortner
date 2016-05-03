@@ -7,10 +7,9 @@ import java.sql.Timestamp;
  */
 public class DateUtil {
 
-    public static Timestamp getCurrentTimeinSqlTimeStamp(){
+    public static Timestamp getCurrentTimeinSqlTimeStamp() {
         java.util.Date today = new java.util.Date();
         java.sql.Timestamp ts = new java.sql.Timestamp(today.getTime());
-
         return ts;
     }
 }

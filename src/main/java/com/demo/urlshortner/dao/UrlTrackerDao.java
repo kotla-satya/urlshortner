@@ -33,20 +33,19 @@ public class UrlTrackerDao {
             preparedStatement.setTimestamp(5, ts);
             preparedStatement.setInt(6, 0);
             int success = preparedStatement.executeUpdate();
-            if(success == 1) {
+            if (success == 1) {
                 urlObject = new UrlObject();
                 urlObject.setShortUrl(shortUrl);
                 urlObject.setLongUrl(longUrl);
                 urlObject.setSuccess(true);
                 //urlObject.setUrlID(urlID);
-                return  urlObject;
+                return urlObject;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             log.log(Level.SEVERE, "Exception while adding new short URL entry to Database, error msg  :"
-                    +e.getMessage());
-        }finally {
-
+                    + e.getMessage());
+        } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();
             }
@@ -54,9 +53,7 @@ public class UrlTrackerDao {
             if (conn != null) {
                 conn.close();
             }
-
         }
-
         return null;
     }
 
@@ -73,17 +70,17 @@ public class UrlTrackerDao {
             preparedStatement.setString(1, longUrl);
             //int success = preparedStatement.executeUpdate();
             ResultSet result = preparedStatement.executeQuery();
-            if(result.next()) {
+            if (result.next()) {
                 urlObject = new UrlObject();
                 urlObject.setShortUrl(result.getString("SHORT_URL"));
                 urlObject.setLongUrl(result.getString("ORIGINAL_URL"));
                 urlObject.setSuccess(true);
-                return  urlObject;
+                return urlObject;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            log.log(Level.SEVERE, "Exception while fetching Long URL Details, error msg  :"+e.getMessage());
-        }finally {
+            log.log(Level.SEVERE, "Exception while fetching Long URL Details, error msg  :" + e.getMessage());
+        } finally {
 
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -94,7 +91,6 @@ public class UrlTrackerDao {
             }
 
         }
-
         return null;
     }
 
@@ -111,7 +107,7 @@ public class UrlTrackerDao {
             preparedStatement.setLong(1, urlID);
             ResultSet result = preparedStatement.executeQuery();
             long counter = 0;
-            if(result.next()) {
+            if (result.next()) {
                 urlObject = new UrlObject();
                 urlObject.setShortUrl(result.getString("SHORT_URL"));
                 urlObject.setLongUrl(result.getString("ORIGINAL_URL"));
@@ -124,18 +120,17 @@ public class UrlTrackerDao {
                 preparedStatement.setLong(3, urlID);
                 int success = preparedStatement.executeUpdate();
                 //TODO need to handle counter update failures and do retry
-                if(success == 1) {
+                if (success == 1) {
                     urlObject.setAccessCount(counter);
-                }else{
+                } else {
                     urlObject.setAccessCount(counter);
                 }
             }
-
-            return  urlObject;
-        }catch (Exception e){
+            return urlObject;
+        } catch (Exception e) {
             e.printStackTrace();
-            log.log(Level.SEVERE, "Exception while fetching Short URL, error msg :"+e.getMessage());
-        }finally {
+            log.log(Level.SEVERE, "Exception while fetching Short URL, error msg :" + e.getMessage());
+        } finally {
 
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -146,10 +141,8 @@ public class UrlTrackerDao {
             }
 
         }
-
         return null;
     }
-
 
 
 }

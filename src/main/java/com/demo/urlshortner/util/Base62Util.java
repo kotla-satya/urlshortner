@@ -19,7 +19,7 @@ public class Base62Util {
 
     private static long fromBase10(long i, final StringBuilder sb) {
         long rem = i % BASE;
-        sb.append(ALPHABET.charAt((int)rem));
+        sb.append(ALPHABET.charAt((int) rem));
         return i / BASE;
     }
 
